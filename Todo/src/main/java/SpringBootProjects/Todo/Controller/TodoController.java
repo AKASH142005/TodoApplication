@@ -1,6 +1,7 @@
-package SpringBootProjects.Todo;
+package SpringBootProjects.Todo.Controller;
 
 import SpringBootProjects.Todo.Models.Todo;
+import SpringBootProjects.Todo.Service.TodoService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
