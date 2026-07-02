@@ -1,4 +1,4 @@
-package SpringBootProjects.Todo;
+package SpringBootProjects.Todo.Repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
