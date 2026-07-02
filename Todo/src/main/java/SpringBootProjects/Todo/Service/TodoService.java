@@ -1,12 +1,12 @@
-package SpringBootProjects.Todo;
+package SpringBootProjects.Todo.Service;
 
 import SpringBootProjects.Todo.Models.Todo;
+import SpringBootProjects.Todo.Repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
