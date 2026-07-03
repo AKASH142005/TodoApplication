@@ -13,8 +13,8 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private final String SECRET = "ahafa fdabifudsdbfsfbdsf faodjf";
-    private final long EXPIRATION = (1000*60);
+    private final String SECRET = "ahafafdabifudsdbfsfbdsf0ddfSEFWDWFS4343faodjf";
+    private final long EXPIRATION = (1000*60*60);
     private final Key secretKey = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
     public String generateToken(String Email){
@@ -26,14 +26,18 @@ public class JwtUtil {
                 .compact();
     }
 
+    public String extractEmail(String token){
+        return   Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
     public boolean validateJwtToken(String token){
        try {
-           Jwts.parserBuilder()
-                   .setSigningKey(secretKey)
-                   .build()
-                   .parseClaimsJwt(token)
-                   .getBody()
-                   .getSubject();
+           extractEmail(token);
            return true ;
 
        } catch (JwtException exception){
