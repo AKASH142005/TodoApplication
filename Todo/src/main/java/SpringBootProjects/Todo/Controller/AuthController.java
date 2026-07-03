@@ -10,11 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
 @RestController
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private final UserService userService;
@@ -23,32 +25,33 @@ public class AuthController {
     private final JwtUtil jwtUtil;
     @PostMapping("/Register")
     public ResponseEntity<String> registerUser(@RequestBody Map<String , String> body){
-        String Email = body.get("Email");
-        String password = body.get("password");
+        String email = body.get("email");
+        String password = passwordEncoder.encode(body.get("password"));
 
-        if(userRepository.findByEmail(Email).isPresent()){
+        if(userRepository.findByEmail(email).isPresent()){
             return new ResponseEntity<>("User Already Exist" , HttpStatus.CONFLICT);
         }
 
-        userService.createUser(User.builder().Email(Email).password(password).build());
+        userService.createUser(User.builder().email(email).password(password).build());
         return new ResponseEntity<>("User successfully creates" , HttpStatus.CREATED) ;
     }
     @PostMapping("/login")
     public ResponseEntity<?> userLogin(@RequestBody Map<String , String> body){
-        String Email = body.get("Email");
+        String email = body.get("email");
         String password = body.get("password");
 
-        var userOptional = userRepository.findByEmail(Email);
+        var userOptional = userRepository.findByEmail(email);
 
         if(userOptional.isEmpty()){
             return new ResponseEntity<>("User Not Register",HttpStatus.NOT_FOUND);
         }
+
         User user = userOptional.get();
         if(! passwordEncoder.matches(password,user.getPassword())){
             return new ResponseEntity<>("Invalid password" , HttpStatus.UNAUTHORIZED);
         }
 
-        String token = jwtUtil.generateToken(Email);
+        String token = jwtUtil.generateToken(email);
 
         return ResponseEntity.ok(Map.of("token" , token));
     }
