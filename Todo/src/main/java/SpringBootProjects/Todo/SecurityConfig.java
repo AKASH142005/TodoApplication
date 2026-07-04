@@ -35,10 +35,10 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
-       CorsConfiguration configuration = new CorsConfiguration();
-       configuration.setAllowedOrigins(List.of("*"));
-       configuration.setAllowedHeaders(List.of("*"));
-       configuration.setAllowedMethods(List.of("POST" , "DELETE", "PUT" , "GET"));
+        CorsConfiguration configuration = new CorsConfiguration();
+         configuration.setAllowedOrigins(List.of("*"));
+         configuration.setAllowedHeaders(List.of("*"));
+         configuration.setAllowedMethods(List.of("POST" , "DELETE", "PUT" , "GET"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**" , configuration);
