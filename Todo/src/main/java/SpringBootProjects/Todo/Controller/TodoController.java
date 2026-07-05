@@ -16,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/todo/api")
+@RequestMapping("/todo")
 public class TodoController {
     @Autowired
     private TodoService todoService;
