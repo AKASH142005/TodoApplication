@@ -31,7 +31,10 @@ public class TodoService {
         return todoRepository.findAll(pageable);
     }
 
-    public Todo updateTodo( Todo todo){
+    public Todo updateTodo(Todo todo){
+        if (todo.getId() == null || !todoRepository.existsById(todo.getId())) {
+           throw new RuntimeException("Todo not found");
+        }
         return todoRepository.save(todo);
     }
 
