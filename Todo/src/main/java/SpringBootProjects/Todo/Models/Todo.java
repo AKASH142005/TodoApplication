@@ -23,8 +23,6 @@ public class Todo {
     @NotBlank
     @Schema(name = "title" , example = "Complete Spring Boot")
     String title ;
-    @NotBlank
-    String description ;
     boolean isCompleted ;
 
     // @Pattern(regexp = "^[0-9]{10}$")
