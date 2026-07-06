@@ -23,7 +23,7 @@ public class AuthController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
-    @PostMapping("/Register")
+    @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody Map<String , String> body){
         String email = body.get("email");
         String password = passwordEncoder.encode(body.get("password"));
