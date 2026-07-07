@@ -34,7 +34,7 @@ function register(){
      .then(response =>{
         if(response.ok){
             alert("Registration SuccessFull , Please Login!");
-            window.location.href="login.html"
+            window.location.href="index.html"
         } else {
             return response.json()
             .then(data => {throw new Error(data.message || "Registration failed")});
@@ -78,7 +78,7 @@ function createTodoCard(todo){
 function loadTodos(){
     if(!token) {
         alert("Please login first")
-        window.location.href ="login.html"
+        window.location.href ="index.html"
         return ;
     }
 
