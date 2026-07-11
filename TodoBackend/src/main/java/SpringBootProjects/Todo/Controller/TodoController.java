@@ -52,9 +52,9 @@ public class TodoController {
         return new ResponseEntity<>(todoService.getAllTodosPages(page , size) , HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<Todo> updateTodoById(@RequestBody Todo todo){
-        return new ResponseEntity<>(todoService.updateTodo(todo) , HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Todo> updateTodoById(@RequestBody Todo todo , @PathVarialbe long id){
+        return new ResponseEntity<>(todoService.updateTodo(todo , id) , HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
