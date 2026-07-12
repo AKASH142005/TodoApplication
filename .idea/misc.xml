@@ -5,6 +5,12 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Todo/pom.xml" />
+        <option value="$PROJECT_DIR$/TodoBackend/pom.xml" />
+      </list>
+    </option>
+    <option name="enabledProfiles">
+      <list>
+        <option value="nativeTest" />
       </list>
     </option>
   </component>
