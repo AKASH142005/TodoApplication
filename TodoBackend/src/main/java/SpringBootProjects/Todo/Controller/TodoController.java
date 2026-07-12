@@ -53,9 +53,14 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Todo> updateTodoById(@RequestBody Todo todo , @PathVarialbe long id){
-        return new ResponseEntity<>(todoService.updateTodo(todo , id) , HttpStatus.OK);
-    }
+    public ResponseEntity<?> updateTodoById(@RequestBody Todo todo , @PathVariable long id){
+        try{
+            return new ResponseEntity<>(todoService.updateTodo(todo , id) , HttpStatus.OK);
+        } catch (RuntimeException error){
+            return new ResponseEntity<>(error.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        }
+
 
     @DeleteMapping("/{id}")
     public void deleteTodoById(@PathVariable long id){

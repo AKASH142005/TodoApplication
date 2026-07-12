@@ -32,9 +32,10 @@ public class TodoService {
     }
 
     public Todo updateTodo(Todo todo ,long id ){
-        if (todo.getId() == null || !todoRepository.existsById(todo.getId())) {
+        if (!todoRepository.existsById(id)) {
            throw new RuntimeException("Todo not found");
         }
+        todo.setId(id);
         return todoRepository.save(todo);
     }
 
